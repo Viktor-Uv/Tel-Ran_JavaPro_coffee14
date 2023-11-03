@@ -1,0 +1,20 @@
+<script type="text/javascript">
+    function test() {
+        var url = "/coffees";
+        var id = document.getElementById("id").value; // элемент по идентификатору
+        var name = document.getElementById("name").value;
+        var coffee = {}; // пустой объект
+        coffee.id = id;
+        coffee.name = name;
+        var json = JSON.stringify(coffee); // объект -> строка
+        var xhr = new XMLHttpRequest(); // для посылки http запросов
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(json);
+    }
+</script>
+<form name="create">
+    <input type="text" id="id" name="id"><br/>
+    <input type="text" id="name" name="name"><br/>
+</form>
+<button type="button" onclick="test();">Create</button>

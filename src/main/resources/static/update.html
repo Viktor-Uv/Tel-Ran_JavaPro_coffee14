@@ -1,0 +1,29 @@
+<!--
+    создать форму с кнопкой
+    написать js функцию
+    вызвать POST
+    id
+    name
+
+    // POST http://localhost:8080/coffees/{id}
+-->
+<script type="text/javascript">
+    function test() {
+        var id = document.getElementById("id").value;
+        var name = document.getElementById("name").value;
+        var url = "/coffees/" + id;
+        var coffee = {};
+        coffee.id = id;
+        coffee.name = name;
+        var json = JSON.stringify(coffee);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.send(json);
+    }
+</script>
+<form name="update">
+    <input type="text" id="id" name="id"/><br/>
+    <input type="text" id="name" name="name"/><br/>
+</form>
+<button type="button" onclick="test();">Update</button>

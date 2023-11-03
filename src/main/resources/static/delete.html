@@ -1,0 +1,15 @@
+<!--
+    // DELETE http://localhost:8080/coffees/{id}
+-->
+<script type="text/javascript">
+    function test() {
+        var url = "/coffees/" + document.getElementById("id").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", url, true);
+        xhr.send(null);
+    }
+</script>
+<form name="delete">
+    <input type="text" id="id" name="id"/>
+</form>
+<button type="button" onclick="test();">Delete</button>
