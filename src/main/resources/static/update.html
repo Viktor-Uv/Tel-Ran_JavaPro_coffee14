@@ -11,10 +11,12 @@
     function test() {
         var id = document.getElementById("id").value;
         var name = document.getElementById("name").value;
+        var price = document.getElementById("price").value;
         var url = "/coffees/" + id;
         var coffee = {};
         coffee.id = id;
         coffee.name = name;
+        coffee.price = price;
         var json = JSON.stringify(coffee);
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
@@ -25,5 +27,6 @@
 <form name="update">
     <input type="text" id="id" name="id"/><br/>
     <input type="text" id="name" name="name"/><br/>
+    <input type="text" id="price" name="price"><br/>
 </form>
 <button type="button" onclick="test();">Update</button>

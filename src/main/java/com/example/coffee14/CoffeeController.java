@@ -5,6 +5,7 @@ package com.example.coffee14;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,11 +48,11 @@ public class CoffeeController {
     public CoffeeController() {
         coffees.addAll(
                 Arrays.asList(
-                        new Coffee("Cappuccino"),
-                        new Coffee("Latte"),
-                        new Coffee("Espresso"),
-                        new Coffee("Americano"),
-                        new Coffee("Ristretto")
+                        new Coffee("Cappuccino", new BigDecimal("5.99")),
+                        new Coffee("Latte", new BigDecimal("6.99")),
+                        new Coffee("Espresso", new BigDecimal("3.99")),
+                        new Coffee("Americano", new BigDecimal("4.99")),
+                        new Coffee("Ristretto", new BigDecimal("7.99"))
                 )
         );
     }
@@ -130,5 +131,22 @@ public class CoffeeController {
                         coffee -> coffee.getName().contains(text)
                 )
                 .toList();
+    }
+
+    // Homework 22
+    // GET ttp://localhost:8080/between?from=1.2&to=3.4
+    @GetMapping("/between") // expects parameters 'from' and 'to' in the url as the price range
+    public Iterable<Coffee> between(
+            @RequestParam("from") BigDecimal from, // extracts 'from' parameter from the url query
+            @RequestParam("to") BigDecimal to // extracts 'to' parameter from the url query
+    ) {
+        return coffees.stream()
+                .filter(
+                        coffee ->
+                                // filter the price including lower and upper bounds
+                                coffee.getPrice().compareTo(from) >= 0 &&
+                                        coffee.getPrice().compareTo(to) <= 0
+                )
+                .toList(); // convert filtered stream to list and return it
     }
 }
