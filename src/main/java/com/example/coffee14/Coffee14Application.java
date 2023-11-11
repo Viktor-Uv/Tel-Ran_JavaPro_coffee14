@@ -4,8 +4,10 @@ package com.example.coffee14;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling // включает возможность периодического выполнения задач в приложении Spring
 public class Coffee14Application {
 
 	public static void main(String[] args) {
